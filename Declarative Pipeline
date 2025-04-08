@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    stages {
+        stage('install apache') {
+            steps {
+                echo "welcome from install apache stage..!"
+                sh '''
+                sudo yum update
+                sudo yum install httpd -y
+                '''
+            }
+        }
+        stage('start apache') {
+            steps {
+                sh '''
+                sudo systemctl start httpd.service
+                sudo systemctl status httpd.service
+                '''
+            }
+        }
+        stage('update webserver') {
+            steps {
+                sh '''
+                curl -O https://www.free-css.com/assets/files/free-css-templates/download/page295/kider.zip
+                unzip kider.zip
+                sudo cp -rf preschool-website-template/* /var/www/html/
+                '''
+            }
+        }
+        stage('install tomcat') {
+            steps {
+                sh '''
+                 curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.102/bin/apache-tomcat-9.0.102.zip
+                 unzip apache-tomcat-9.0.102.zip
+                 sudo sh apache-tomcat-9.0.102/bin/catalina.sh start
+                '''
+            }
+        }
+    }
+}
