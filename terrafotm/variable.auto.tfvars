@@ -1,0 +1,5 @@
+sg-vpcid = "vpc-064573473c6c17bbe"
+subnet1 = "subnet-0e33c4abb42df7fc4"
+i-type = "t2.micro"
+key = "nv_delete"
+vol-type = "gp3"
