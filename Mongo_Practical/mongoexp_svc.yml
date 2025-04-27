@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  mongoexp-service
+spec:
+  selector:
+    app: mongo-erpress
+  type:  LoadBalancer
+  ports:
+  - name:  mongoexpress
+    port:  80
+    targetPort:  8081
